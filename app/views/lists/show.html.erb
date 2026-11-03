@@ -1,0 +1,30 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6">
+    
+    <!-- Navigation Back Link -->
+    <div class="mb-3">
+      <%= link_to "← Back to List", lists_path, class: "text-decoration-none text-muted fw-semibold" %>
+    </div>
+
+    <!-- Task Details Card -->
+    <div class="card shadow-sm border-0 rounded-3 mb-4">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <span class="badge <%= @list.completed? ? 'bg-success-subtle text-success' : 'bg-primary-subtle text-primary' %> rounded-pill px-3 py-2">
+            <%= @list.completed? ? '✓ Completed' : '• Active Task' %>
+          </span>
+        </div>
+        
+        <h1 class="h3 fw-bold text-dark mb-0">
+          <%= @list.description %>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Actions Footer -->
+    <div class="d-flex gap-2">
+      <%= link_to 'Edit Task Details', edit_list_path(@list), class: "btn btn-outline-secondary w-100 rounded-pill fw-semibold" %>
+    </div>
+
+  </div>
+</div>

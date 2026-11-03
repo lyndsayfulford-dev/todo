@@ -1,0 +1,49 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6">
+    
+    <!-- Navigation Back Link -->
+    <div class="mb-3">
+      <%= link_to "← Cancel and Go Back", lists_path, class: "text-decoration-none text-muted fw-semibold" %>
+    </div>
+
+    <!-- Create Form Card -->
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold text-dark mb-4">Add a New Task</h2>
+
+        <%= form_with(model: @list, local: true) do |form| %>
+          <% if @list.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger rounded-3 mb-3">
+              <h5 class="alert-heading small fw-bold"><%= pluralize(@list.errors.count, "error") %> stopped this task from saving:</h5>
+              <ul class="mb-0 small">
+                <% @list.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Input Text Field Wrapper -->
+          <div class="mb-4">
+            <%= form.label :description, "What needs to be done?", class: "form-label fw-semibold text-secondary small" %>
+            <%= form.text_field :description, class: "form-control form-control-lg border-secondary-subtle rounded-3", placeholder: "e.g. Buy groceries, wash the car...", autofocus: true %>
+          </div>
+
+          <!-- Priority Selector Block -->
+          <div class="mb-4">
+            <%= form.label :priority, "Task Priority", class: "form-label fw-semibold text-secondary small" %>
+            <%= form.select :priority, ['High', 'Medium', 'Low'], {}, { class: "form-select form-control-lg border-secondary-subtle rounded-3" } %>
+          </div>
+
+
+          <!-- Submit Controls -->
+          <div class="d-grid">
+            <%= form.submit "Create Task Item", class: "btn btn-primary btn-lg rounded-3 fw-semibold shadow-sm" %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+</div>

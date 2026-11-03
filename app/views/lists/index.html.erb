@@ -1,0 +1,41 @@
+<p id="notice" class="text-success fw-semibold"><%= notice %></p>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    
+    <!-- Header Area -->
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+      <div>
+        <h1 class="h2 text-dark fw-bold mb-0">My To-Do List</h1>
+        <span class="badge bg-primary rounded-pill px-3 py-1 mt-1"><%= @lists.count %> Tasks Total</span>
+      </div>
+      
+      <% if @lists.any?(&:completed?) %>
+        <%= button_to "Clear Completed", clear_completed_lists_path, 
+                      method: :delete, 
+                      class: "btn btn-sm btn-outline-danger px-3 rounded-pill fw-semibold shadow-sm",
+                      form: { data: { turbo_confirm: "Clear all completed tasks permanently?" } } %>
+      <% end %>
+    </div>
+
+    <!-- Main List Container -->
+    <% if @lists.any? %>
+      <div class="mb-4">
+        <% @lists.each do |list| %>
+          <%= render 'lists/list_card', list: list %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="card shadow-sm border-0 mb-4 py-5 text-center rounded-3 bg-light">
+        <p class="text-secondary fw-semibold mb-1">Your list is empty!</p>
+        <p class="text-muted small mb-0">Enjoy your free time or add an item below.</p>
+      </div>
+    <% end %>
+
+    <!-- Action Button Section -->
+    <div class="d-grid gap-2 mt-4">
+      <%= link_to "＋ Add To-Do Item", new_list_path, class: "btn btn-primary btn-lg shadow-sm rounded-3 fw-semibold" %>
+    </div>
+
+  </div>
+</div>

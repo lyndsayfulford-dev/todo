@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Todo" %></title>
+    
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Todo">
@@ -9,21 +10,40 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+        <!-- FIXED: Added full path to Bootstrap CSS v5.3.3 -->
+       <!-- FIXED: Added full explicit path to Bootstrap CSS v5.3.3 -->
+    <link href="https://cdn.jsdelivr.net" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- FIXED: Added full explicit path to Animate.css Framework -->
+    <link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/cqwiNXc3ghcEG+WRLuvWt+le8BB9jYmWgqIzydLs9f64i9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
     <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+  
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <%= link_to "To-do App", root_path, class: "navbar-brand" %>
+
+      </div>
+    </nav>
+
+    <!-- Main Content Container (This will work perfectly now!) -->
+    <div class="container">
+      <%= yield %>
+    </div>
+    
+    <!-- FIXED: Added full path to Bootstrap JS bundle v5.3.3 -->
+    <script src="https://cdn.jsdelivr.net" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
